@@ -1,4 +1,4 @@
-name: RDP-BOT-WA-AUTO-LOOP
+Name: RDP-BOT-WA-AUTO-LOOP
 
 on:
   workflow_dispatch: # Cukup pakai ini. Hapus schedule cron biar gak tabrakan dan dobel!
@@ -51,7 +51,27 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: "4.8 Setup Cloudflare WARP VPN"
+      - name: "5. Run Bot with Auto-Restart (Logic Check)"
+        run: |
+          if (Test-Path "node_modules") {
+              Write-Host "Folder node_modules ditemukan! Skip npm install."
+          } else {
+              Write-Host "Folder node_modules tidak ditemukan! Menjalankan npm install..."
+              npm install
+          }
+          
+          $script = @"
+          while(`$true) {
+              Write-Host "Menjalankan Bot..."
+              npm start
+              Write-Host "Bot crash, restart dalam 5 detik..."
+              Start-Sleep -Seconds 5
+          }
+          "@
+          $script | Out-File -FilePath "start_bot.ps1"
+          Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File start_bot.ps1" -WindowStyle Normal
+
+      - name: "5.5 Setup Cloudflare WARP VPN"
         run: |
           Write-Host "Mengunduh installer Cloudflare WARP..."
           $warpUrl = "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi"
@@ -74,26 +94,6 @@ jobs:
           Write-Host "Status WARP: $warpStatus"
           Write-Host "==============================="
 
-      - name: "5. Run Bot with Auto-Restart (Logic Check)"
-        run: |
-          if (Test-Path "node_modules") {
-              Write-Host "Folder node_modules ditemukan! Skip npm install."
-          } else {
-              Write-Host "Folder node_modules tidak ditemukan! Menjalankan npm install..."
-              npm install
-          }
-          
-          $script = @"
-          while(`$true) {
-              Write-Host "Menjalankan Bot..."
-              npm start
-              Write-Host "Bot crash, restart dalam 5 detik..."
-              Start-Sleep -Seconds 5
-          }
-          "@
-          $script | Out-File -FilePath "start_bot.ps1"
-          Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File start_bot.ps1" -WindowStyle Normal
-
       - name: "6. Keep Alive (Durasi 5 Jam)"
         run: |
           Write-Host "Server berjalan... Menunggu 5 jam (18000 detik) sebelum auto-backup."
@@ -106,5 +106,4 @@ jobs:
           git config --global user.email "actions@github.com"
           
           git add -A
-
           

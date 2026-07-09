@@ -24,11 +24,13 @@ jobs:
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0 -Force
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 0 -Force
           netsh advfirewall firewall add rule name="RDP" dir=in action=allow protocol=TCP localport=3389
+
       - name: "3. Create Admin User"
         run: |
           $pass = ConvertTo-SecureString "ServerKuat99@!" -AsPlainText -Force
           New-LocalUser -Name "RDP" -Password $pass
           Add-LocalGroupMember -Group "Administrators" -Member "RDP"
+
       - name: "4. Setup Tailscale"
         run: |
           $tsUrl = "https://dl.tailscale.com/stable/tailscale-setup-1.82.0-amd64.msi"
@@ -40,6 +42,7 @@ jobs:
           Write-Host "==============================="
           Write-Host "IP RDP: $tsIP"
           Write-Host "==============================="
+
       - name: "4.5 Cache Node Modules"
         uses: actions/cache@v4
         with:
@@ -47,6 +50,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: "5. Run Bot with Auto-Restart (Logic Check)"
         run: |
           if (Test-Path "node_modules") {
@@ -66,6 +70,7 @@ jobs:
           "@
           $script | Out-File -FilePath "start_bot.ps1"
           Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File start_bot.ps1" -WindowStyle Normal
+
       - name: "5.5 Setup Cloudflare WARP VPN"
         run: |
           Write-Host "Mengunduh installer Cloudflare WARP..."
@@ -88,32 +93,35 @@ jobs:
           Write-Host "==============================="
           Write-Host "Status WARP: $warpStatus"
           Write-Host "==============================="
+
       - name: "6. Keep Alive (Durasi 5 Jam)"
         run: |
           Write-Host "Server berjalan... Menunggu 5 jam (18000 detik) sebelum auto-backup."
           Start-Sleep -Seconds 18000
-          - name: "7. Auto-Backup Semua Perubahan File"
+
+      - name: "7. Auto-Backup Semua Perubahan File"
         if: always()
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # 1. Tambahkan semua file yang berubah, baru, atau dihapus
           git add -A
           
-          # 2. Cek apakah ada perubahan (mencegah error jika tidak ada file yang berubah)
           $changes = git status --porcelain
           if ($changes) {
               Write-Host "Ditemukan perubahan file. Melakukan commit dan push..."
-              # Tambahkan [skip ci] agar push ini tidak memicu workflow baru secara tidak sengaja
               git commit -m "Auto-backup data bot [skip ci]"
-              
-              # Lakukan push (Pastikan branch utama Anda bernama 'main', jika 'master' ubah HEAD:master)
               git push origin HEAD:main
               Write-Host "Backup berhasil dipush ke repositori!"
           } else {
               Write-Host "Tidak ada perubahan file. Melewati proses backup."
           }
 
-
+      - name: "8. Auto-Up (Trigger Siklus Berikutnya)"
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          # Memanggil file ini sendiri untuk berputar ke siklus berikutnya secara berantai
+          gh workflow run "main.yml" --ref main
           

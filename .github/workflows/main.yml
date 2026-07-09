@@ -107,21 +107,3 @@ jobs:
           
           git add -A
           
-          $status = git status --porcelain
-          if ($status) {
-              Write-Host "Ada file yang berubah! Melakukan proses backup..."
-              git commit -m "Auto-backup semua folder/file: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
-              git pull --rebase origin main
-              git push origin main
-              Write-Host "Backup selesai!"
-          } else {
-              Write-Host "Tidak ada perubahan pada file. Melewati proses backup."
-          }
-
-      - name: "8. Auto-Up (Trigger Siklus Berikutnya)"
-        if: ${{ !cancelled() }}
-        env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          # Memanggil file ini sendiri untuk berputar ke siklus berikutnya secara berantai
-          gh workflow run "main.yml" --ref main

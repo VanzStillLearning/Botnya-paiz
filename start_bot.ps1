@@ -1,6 +1,6 @@
 while($true) {
     Write-Host "Menjalankan Bot..."
-    node index.js
+    npm start
     Write-Host "Bot crash, restart dalam 5 detik..."
     Start-Sleep -Seconds 5
 }

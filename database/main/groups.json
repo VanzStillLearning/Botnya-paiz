@@ -2,18 +2,18 @@
   "120363427618821749@g.us": {
     "chatStats": {
       "62881011965054@s.whatsapp.net": {
-        "count": 1,
-        "lastChat": 1783586616428,
+        "count": 2,
+        "lastChat": 1783634724777,
         "name": "MRX"
       },
       "62895385533890@s.whatsapp.net": {
-        "count": 14,
-        "lastChat": 1783586729805,
+        "count": 156,
+        "lastChat": 1783635868670,
         "name": "Van"
       },
       "6288212949095@s.whatsapp.net": {
-        "count": 3,
-        "lastChat": 1783586729187,
+        "count": 73,
+        "lastChat": 1783634484867,
         "name": "idk"
       }
     },
@@ -22,6 +22,291 @@
     "welcome": false,
     "leave": false,
     "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363425853464029@g.us": {
+    "chatStats": {
+      "6283151763879@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783635452547,
+        "name": "𝙵𝙴𝙱𝚁𝙸"
+      }
+    },
+    "jid": "120363425853464029@g.us",
+    "name": "𝙅𝘽² 𝘼𝙇𝙇 𝙂𝘼𝙈𝙀 || 𝐙𝐄𝐍𝐂𝐀 𝐗 𝐎𝐖𝐍",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363411274070565@g.us": {
+    "chatStats": {
+      "6285185544901@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783635694967,
+        "name": "JANGAN CHAT BOT! ANJ"
+      }
+    },
+    "jid": "120363411274070565@g.us",
+    "name": "𝐀𝐋𝐋 𝐏𝐑𝐎𝐃𝐔𝐊 𝐖𝐀𝐑𝐔𝐍𝐆 𝐒𝐀𝐕𝐀𝐆𝐄",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363427502251234@g.us": {
+    "chatStats": {
+      "6285868765805@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1783635796418,
+        "name": "aduh C1😎"
+      }
+    },
+    "jid": "120363427502251234@g.us",
+    "name": "JB BADRUL STORE",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363425796284584@g.us": {
+    "chatStats": {
+      "628159848410@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1783635841775,
+        "name": "KINGDIDIRPTSKYXCYCEN"
+      },
+      "628979693605@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783636936349,
+        "name": "BOMS'STURR"
+      }
+    },
+    "jid": "120363425796284584@g.us",
+    "name": "𝗦𝗧𝗢𝗞 𝗣𝗥𝗜𝗕𝗔𝗗𝗜 𝗢𝗠 𝗠𝗨𝗥𝗘 𝗫 𝗣𝗧 𝟬.𝟮",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363407998230020@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363407998230020@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363399009643710@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363399009643710@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363419055843962@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363419055843962@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363421804740792@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363421804740792@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363409335042418@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363409335042418@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363424645084839@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363424645084839@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363410331174245@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363410331174245@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363425204016788@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363425204016788@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363424644074171@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363424644074171@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363424480267865@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363424480267865@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363424288836812@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363424288836812@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363424104598749@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363424104598749@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363410561832008@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363410561832008@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363403170388792@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363403170388792@g.us",
+    "name": "Unknown Group",
     "antilink": false,
     "antitoxic": false,
     "mute": false,

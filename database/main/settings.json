@@ -42,7 +42,13 @@
   "panelCreateLastUsed": 1775377733441,
   "autoJoinGc": false,
   "autoSholat": false,
-  "errorLog": [],
+  "errorLog": [
+    {
+      "cmd": "unknown",
+      "err": "Connection Closed",
+      "at": 1783636160410
+    }
+  ],
   "jpmBlacklist": [],
   "bannedUsers": [],
   "allmenuVariant": 6,
@@ -75,6 +81,26 @@
     "6288212949095@s.whatsapp.net": {
       "jid": "6288212949095@s.whatsapp.net",
       "name": "idk"
+    },
+    "6283151763879@s.whatsapp.net": {
+      "jid": "6283151763879@s.whatsapp.net",
+      "name": "𝙵𝙴𝙱𝚁𝙸"
+    },
+    "6285185544901@s.whatsapp.net": {
+      "jid": "6285185544901@s.whatsapp.net",
+      "name": "JANGAN CHAT BOT! ANJ"
+    },
+    "6285868765805@s.whatsapp.net": {
+      "jid": "6285868765805@s.whatsapp.net",
+      "name": "aduh C1😎"
+    },
+    "628159848410@s.whatsapp.net": {
+      "jid": "628159848410@s.whatsapp.net",
+      "name": "KINGDIDIRPTSKYXCYCEN"
+    },
+    "628979693605@s.whatsapp.net": {
+      "jid": "628979693605@s.whatsapp.net",
+      "name": "BOMS'STURR"
     }
   },
   "notiflimit": false,

@@ -1,4 +1,4 @@
-Name: RDP-BOT-WA-AUTO-LOOP
+name: RDP-BOT-WA-AUTO-LOOP
 
 on:
   workflow_dispatch: # Cukup pakai ini. Hapus schedule cron biar gak tabrakan dan dobel!

@@ -1,1 +1,33 @@
-{}
+{
+  "120363427618821749@g.us": {
+    "chatStats": {
+      "62881011965054@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783586616428,
+        "name": "MRX"
+      },
+      "62895385533890@s.whatsapp.net": {
+        "count": 14,
+        "lastChat": 1783586729805,
+        "name": "Van"
+      },
+      "6288212949095@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1783586729187,
+        "name": "idk"
+      }
+    },
+    "jid": "120363427618821749@g.us",
+    "name": "Cadang",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  }
+}

@@ -71,6 +71,28 @@ jobs:
           $script | Out-File -FilePath "start_bot.ps1"
           Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File start_bot.ps1" -WindowStyle Normal
 
+      - name: "5.5 Setup Cloudflare WARP VPN"
+        run: |
+          Write-Host "Mengunduh installer Cloudflare WARP..."
+          $warpUrl = "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi"
+          Invoke-WebRequest -Uri $warpUrl -OutFile "$env:TEMP\warp.msi"
+          
+          Write-Host "Menginstal Cloudflare WARP secara senyap (silent install)..."
+          Start-Process msiexec.exe -ArgumentList "/i `"$env:TEMP\warp.msi`" /quiet /norestart" -Wait
+          Start-Sleep -Seconds 15
+          
+          Write-Host "Meregistrasi perangkat ke jaringan Cloudflare..."
+          & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos registration new
+          
+          Write-Host "Menghubungkan ke VPN WARP..."
+          & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos connect
+          Start-Sleep -Seconds 5
+          
+          Write-Host "Memeriksa status koneksi..."
+          $warpStatus = & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos status
+          Write-Host "==============================="
+          Write-Host "Status WARP: $warpStatus"
+          Write-Host "==============================="
 
       - name: "6. Keep Alive (Durasi 5 Jam)"
         run: |

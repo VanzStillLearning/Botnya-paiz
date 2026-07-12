@@ -1,7 +1,7 @@
 {
-  "commandsExecuted": 72,
+  "commandsExecuted": 79,
   "command_menu": 8,
-  "command_ping": 30,
+  "command_ping": 32,
   "command_addown": 1,
   "command_self": 3,
   "command_pin": 1,
@@ -16,8 +16,9 @@
   "command_swgc": 4,
   "command_swgcv2all": 3,
   "dailyResets": 2,
-  "command_ping2": 1,
+  "command_ping2": 2,
   "command_autotyping": 1,
   "command_autoread": 1,
-  "command_tiktok": 2
+  "command_tiktok": 2,
+  "command_autoreactsw": 4
 }

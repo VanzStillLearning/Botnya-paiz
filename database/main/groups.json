@@ -21087,5 +21087,78 @@
         "name": "Ridd_sture"
       }
     }
+  },
+  "120363425244162875@g.us": {
+    "chatStats": {
+      "6283866312089@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783941611788,
+        "name": "zarr"
+      },
+      "6283835762672@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783941613524,
+        "name": "Liezyee."
+      },
+      "6282140825758@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783941613892,
+        "name": "yya"
+      }
+    },
+    "jid": "120363425244162875@g.us",
+    "name": "𝙈𝘼𝙍𝙆𝙀𝙏 𝙍𝙊𝘽𝙇𝙊𝙓 𝙆𝘼𝙕𝙀𝙉𝙊𝙈𝙄 𝙑2👑",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363427669372060@g.us": {
+    "chatStats": {
+      "6282140825758@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1783941615352,
+        "name": "yya"
+      }
+    },
+    "jid": "120363427669372060@g.us",
+    "name": "¹𝗠𝗔𝗥𝗞𝗘𝗧 𝗔𝗟𝗟𝗠𝗔𝗣 𝗥𝗢𝗕𝗟𝗢𝗫 ✨👑",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363429304848498@g.us": {
+    "chatStats": {
+      "6283843497107@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1783941617430,
+        "name": "TYZ.FARHAN|M.H√"
+      }
+    },
+    "jid": "120363429304848498@g.us",
+    "name": "JB² ALL GAME | ULLX STORE",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
   }
 }

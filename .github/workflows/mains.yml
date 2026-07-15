@@ -1,0 +1,118 @@
+name: RDP-BOT-WA-AUTO-LOOPpaiz
+
+on:
+  workflow_dispatch: # Cukup pakai ini. Hapus schedule cron biar gak tabrakan dan dobel!
+
+# Fitur pengaman: memastikan hanya ada 1 RDP yang berjalan dalam satu waktu
+concurrency:
+  group: rdp-wa-loop
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write
+
+    steps:
+      - name: "1. Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "2. Setup Environment"
+        run: |
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0 -Force
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 0 -Force
+          netsh advfirewall firewall add rule name="RDP" dir=in action=allow protocol=TCP localport=3389
+      - name: "3. Create Admin User"
+        run: |
+          $pass = ConvertTo-SecureString "ServerKuat99@!" -AsPlainText -Force
+          New-LocalUser -Name "RDP" -Password $pass
+          Add-LocalGroupMember -Group "Administrators" -Member "RDP"
+      - name: "4. Setup Tailscale"
+        run: |
+          $tsUrl = "https://dl.tailscale.com/stable/tailscale-setup-1.82.0-amd64.msi"
+          Invoke-WebRequest -Uri $tsUrl -OutFile "$env:TEMP\tailscale.msi"
+          Start-Process msiexec.exe -ArgumentList "/i", "`"$env:TEMP\tailscale.msi`"", "/quiet", "/norestart" -Wait
+          Start-Sleep -Seconds 15
+          & "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=windows-rdp --accept-dns=false
+          $tsIP = & "$env:ProgramFiles\Tailscale\tailscale.exe" ip -4
+          Write-Host "==============================="
+          Write-Host "IP RDP: $tsIP"
+          Write-Host "==============================="
+      - name: "4.5 Cache Node Modules"
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: "5. Run Bot with Auto-Restart (Logic Check)"
+        run: |
+          if (Test-Path "node_modules") {
+              Write-Host "Folder node_modules ditemukan! Skip npm install."
+          } else {
+              Write-Host "Folder node_modules tidak ditemukan! Menjalankan npm install..."
+              npm install
+          }
+          
+          $script = @"
+          while(`$true) {
+              Write-Host "Menjalankan Bot..."
+              npm start
+              Write-Host "Bot crash, restart dalam 5 detik..."
+              Start-Sleep -Seconds 5
+          }
+          "@
+          $script | Out-File -FilePath "start_bot.ps1"
+          Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File start_bot.ps1" -WindowStyle Normal
+      - name: "5.5 Setup Cloudflare WARP VPN"
+        run: |
+          Write-Host "Mengunduh installer Cloudflare WARP..."
+          $warpUrl = "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi"
+          Invoke-WebRequest -Uri $warpUrl -OutFile "$env:TEMP\warp.msi"
+          
+          Write-Host "Menginstal Cloudflare WARP secara senyap (silent install)..."
+          Start-Process msiexec.exe -ArgumentList "/i `"$env:TEMP\warp.msi`" /quiet /norestart" -Wait
+          Start-Sleep -Seconds 15
+          
+          Write-Host "Meregistrasi perangkat ke jaringan Cloudflare..."
+          & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos registration new
+          
+          Write-Host "Menghubungkan ke VPN WARP..."
+          & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos connect
+          Start-Sleep -Seconds 5
+          
+          Write-Host "Memeriksa status koneksi..."
+          $warpStatus = & "C:\Program Files\Cloudflare\Cloudflare WARP\warp-cli.exe" --accept-tos status
+          Write-Host "==============================="
+          Write-Host "Status WARP: $warpStatus"
+          Write-Host "==============================="
+      - name: "6. Keep Alive (Durasi 5 Jam)"
+        run: |
+          Write-Host "Server berjalan... Menunggu 5 jam (18000 detik) sebelum auto-backup."
+          Start-Sleep -Seconds 18000
+      - name: "7. Auto-Backup Semua Perubahan File"
+        if: always()
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          git add -A
+          
+          $changes = git status --porcelain
+          if ($changes) {
+              Write-Host "Ditemukan perubahan file. Melakukan commit dan push..."
+              git commit -m "Auto-backup data bot [skip ci]"
+              git push origin HEAD:main
+              Write-Host "Backup berhasil dipush ke repositori!"
+          } else {
+              Write-Host "Tidak ada perubahan file. Melewati proses backup."
+          }
+      - name: "8. Auto-Up (Trigger Siklus Berikutnya)"
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          # Memanggil file ini sendiri untuk berputar ke siklus berikutnya secara berantai
+          gh workflow run "main.yml" --ref main
